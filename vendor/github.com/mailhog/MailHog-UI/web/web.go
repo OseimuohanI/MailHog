@@ -49,6 +49,12 @@ const customCSS = "" +
 "body.mh-dark .nav-tabs > li.active > a:hover,\n" +
 "body.mh-dark .nav-tabs > li.active > a:focus { background: #141821; border-color: #2a2f3a; color: #ffffff; }\n" +
 "body.mh-dark .tab-content { background: #0f1115; }\n" +
+"body.mh-dark .tab-pane,\n" +
+"body.mh-dark .tab-pane pre,\n" +
+"body.mh-dark .tab-pane code,\n" +
+"body.mh-dark pre,\n" +
+"body.mh-dark code { background: #0f1115; color: #e6e6e6; border-color: #2a2f3a; }\n" +
+"body.mh-dark iframe { background: #0f1115; }\n" +
 ".mh-theme-fab { position: fixed; right: 16px; bottom: 16px; z-index: 9999; padding: 6px 10px; border-radius: 4px; border: 1px solid #2a2f3a; background: #1b2130; color: #e6e6e6; font-size: 12px; }\n" +
 "body.mh-light .mh-theme-fab { background: #f7f7f7; color: #333333; border-color: #cccccc; }\n" +
 "body.mh-dark .mh-theme-toggle { cursor: pointer; }\n"
@@ -64,6 +70,35 @@ const customJS = "" +
 "    if(!body){ return; }\n" +
 "    body.classList.toggle('mh-dark', theme === 'dark');\n" +
 "    body.classList.toggle('mh-light', theme === 'light');\n" +
+"    applyIframeTheme(theme);\n" +
+"  }\n" +
+"\n" +
+"  function applyIframeTheme(theme){\n" +
+"    var iframes = document.querySelectorAll('iframe');\n" +
+"    if(!iframes || !iframes.length){ return; }\n" +
+"    for(var i = 0; i < iframes.length; i++){\n" +
+"      var iframe = iframes[i];\n" +
+"      try {\n" +
+"        var doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);\n" +
+"        if(!doc){ continue; }\n" +
+"        var isDark = theme === 'dark';\n" +
+"        if(doc.documentElement){ doc.documentElement.style.colorScheme = isDark ? 'dark' : 'light'; }\n" +
+"        if(doc.body){\n" +
+"          doc.body.style.background = isDark ? '#0f1115' : '#ffffff';\n" +
+"          doc.body.style.color = isDark ? '#e6e6e6' : '#111111';\n" +
+"        }\n" +
+"        var styleId = 'mh-dark-iframe-style';\n" +
+"        var style = doc.getElementById(styleId);\n" +
+"        if(!style){\n" +
+"          style = doc.createElement('style');\n" +
+"          style.id = styleId;\n" +
+"          doc.head && doc.head.appendChild(style);\n" +
+"        }\n" +
+"        if(style){\n" +
+"          style.textContent = isDark ? 'body{background:#0f1115;color:#e6e6e6;}a{color:#8ab4f8;}pre,code{background:#0f1115;color:#e6e6e6;}' : '';\n" +
+"        }\n" +
+"      } catch(e) {}\n" +
+"    }\n" +
 "  }\n" +
 "\n" +
 "  function getStoredTheme(){\n" +
@@ -95,6 +130,7 @@ const customJS = "" +
 "      setTheme(next);\n" +
 "      storeTheme(next);\n" +
 "      updateLabel();\n" +
+"      applyIframeTheme(next);\n" +
 "    });\n" +
 "    if(nav){\n" +
 "      li = document.createElement('li');\n" +
@@ -126,6 +162,10 @@ const customJS = "" +
 "    setTheme(resolveTheme());\n" +
 "    updateGithubLink();\n" +
 "    addToggle();\n" +
+"    applyIframeTheme(resolveTheme());\n" +
+"    document.addEventListener('load', function(){\n" +
+"      applyIframeTheme(resolveTheme());\n" +
+"    }, true);\n" +
 "  });\n" +
 "\n" +
 "  if(window.matchMedia){\n" +
