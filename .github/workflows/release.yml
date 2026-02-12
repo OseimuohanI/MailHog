@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Get version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Build binaries
+        run: |
+          # macOS ARM64 (Apple Silicon)
+          GOOS=darwin GOARCH=arm64 go build -o MailHog-darwin-arm64 -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" .
+          
+          # macOS AMD64 (Intel)
+          GOOS=darwin GOARCH=amd64 go build -o MailHog-darwin-amd64 -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" .
+          
+          # Linux AMD64
+          GOOS=linux GOARCH=amd64 go build -o MailHog-linux-amd64 -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" .
+          
+          # Linux ARM64
+          GOOS=linux GOARCH=arm64 go build -o MailHog-linux-arm64 -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" .
+          
+          # Windows AMD64
+          GOOS=windows GOARCH=amd64 go build -o MailHog-windows-amd64.exe -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" .
+
+      - name: Generate checksums
+        run: |
+          sha256sum MailHog-* > checksums.txt
+          cat checksums.txt
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            MailHog-darwin-arm64
+            MailHog-darwin-amd64
+            MailHog-linux-amd64
+            MailHog-linux-arm64
+            MailHog-windows-amd64.exe
+            checksums.txt
+          body: |
+            ## MailHog Custom Build v${{ steps.get_version.outputs.VERSION }}
+            
+            ### Features
+            - 🌙 **Dark Mode**: Toggle between light and dark themes
+            - 💾 **Persistent Storage**: Emails saved to `./mailhog-data` across restarts
+            - 🎨 **Custom Branding**: Links to this fork
+            
+            ### Installation
+            
+            #### Homebrew (macOS/Linux)
+            ```bash
+            brew tap OseimuohanI/mailhog
+            brew install mailhog
+            ```
+            
+            #### Manual Installation
+            1. Download the binary for your platform
+            2. Make it executable: `chmod +x MailHog-*`
+            3. Run: `./MailHog-*`
+            
+            ### Usage
+            - SMTP Server: `localhost:1025`
+            - Web UI: `http://localhost:8025`
+            - Storage: `./mailhog-data/`
+            
+            ### Checksums
+            See `checksums.txt` for SHA256 verification.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
