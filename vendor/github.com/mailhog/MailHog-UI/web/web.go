@@ -112,8 +112,15 @@ const customJS = "" +
 "    updateLabel();\n" +
 "  }\n" +
 "\n" +
+"  function updateGithubLink(){\n" +
+"    var link = document.querySelector('a[href*=\"github.com/mailhog/MailHog\"]');\n" +
+"    if(!link){ return; }\n" +
+"    link.href = 'https://github.com/OseimuohanI/MailHog';\n" +
+"  }\n" +
+"\n" +
 "  ready(function(){\n" +
 "    setTheme(resolveTheme());\n" +
+"    updateGithubLink();\n" +
 "    addToggle();\n" +
 "  });\n" +
 "\n" +
