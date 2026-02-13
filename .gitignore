@@ -2,3 +2,5 @@ build/
 release/
 mailhog-data/
 MailHog
+.DS_Store
+.venv/
