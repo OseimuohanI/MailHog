@@ -179,6 +179,12 @@ func (apiv2 *APIv2) deleteJim(w http.ResponseWriter, req *http.Request) {
 	}
 
 	apiv2.config.Monkey = nil
+
+	if err := config.SaveJimState(apiv2.config); err != nil {
+		log.Printf("[APIv2] Error saving Jim state: %s", err)
+		w.WriteHeader(500)
+		return
+	}
 }
 
 func (apiv2 *APIv2) createJim(w http.ResponseWriter, req *http.Request) {
@@ -197,6 +203,12 @@ func (apiv2 *APIv2) createJim(w http.ResponseWriter, req *http.Request) {
 	// Could be better (e.g., ok if no json, error if badly formed json)
 	// but this works for now
 	apiv2.newJimFromBody(w, req)
+
+	if err := config.SaveJimState(apiv2.config); err != nil {
+		log.Printf("[APIv2] Error saving Jim state: %s", err)
+		w.WriteHeader(500)
+		return
+	}
 
 	w.WriteHeader(201)
 }
@@ -232,6 +244,12 @@ func (apiv2 *APIv2) updateJim(w http.ResponseWriter, req *http.Request) {
 	err := apiv2.newJimFromBody(w, req)
 	if err != nil {
 		w.WriteHeader(400)
+		return
+	}
+
+	if err := config.SaveJimState(apiv2.config); err != nil {
+		log.Printf("[APIv2] Error saving Jim state: %s", err)
+		w.WriteHeader(500)
 	}
 }
 
