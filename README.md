@@ -26,7 +26,9 @@ MailHog is an email testing tool for developers:
 
 #### MacOS
 ```bash
-brew update && brew install mailhog
+brew update
+brew tap OseimuohanI/homebrew-mailhog
+brew install mailhog
 ```
 
 Then, start MailHog by running `mailhog` in the command line.
@@ -53,7 +55,11 @@ E.g. the path to Go's bin files on Ubuntu is `~/go/bin/`, so to start the MailHo
 Check out how to [configure MailHog](/docs/CONFIG.md), or use the default settings:
   * the SMTP server starts on port 1025
   * the HTTP server starts on port 8025
-  * in-memory message storage
+  * maildir message storage in ./mailhog-data
+
+Jim (the chaos monkey) state is also persisted. When you enable Jim via the API,
+the state is saved to ./mailhog-data/jim.json and restored on restart. You can
+override the file path with -jim-state-file or MH_JIM_STATE_FILE.
 
 ### Features
 
@@ -121,6 +127,3 @@ If you make any changes, run ```go fmt ./...``` before submitting a pull request
 Copyright ©‎ 2014 - 2017, Ian Kent (http://iankent.uk)
 
 Released under MIT license, see [LICENSE](LICENSE.md) for details.
-
-###Plus go build -o MailHog .
-./MailHog
