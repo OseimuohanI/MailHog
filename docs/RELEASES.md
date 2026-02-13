@@ -1,6 +1,11 @@
 MailHog Releases
 ================
 
+### [v2.0.3](https://github.com/OseimuohanI/MailHog/releases/v2.0.3)
+
+Bug Fixes
+- Fix Jim reporting its state in an email
+
 ### [v1.0.0](https://github.com/mailhog/MailHog/releases/v1.0.0)
 
 There's still outstanding PRs and issues which haven't been addressed in this release.
