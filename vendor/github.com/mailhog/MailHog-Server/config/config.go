@@ -69,7 +69,7 @@ type OutgoingSMTP struct {
 
 var cfg = DefaultConfig()
 
-const defaultJimStateFile = "./mailhog-data/jim.json"
+const defaultJimStateFile = "./mailhog-state/jim.json"
 
 // Jim is a monkey
 var Jim = &monkey.Jim{}
@@ -99,7 +99,7 @@ func Configure() *Config {
 	}
 
 	if cfg.JimStateFile == defaultJimStateFile && cfg.MaildirPath != "./mailhog-data" {
-		cfg.JimStateFile = filepath.Join(cfg.MaildirPath, "jim.json")
+		cfg.JimStateFile = filepath.Join(filepath.Dir(cfg.MaildirPath), ".mailhog-state", "jim.json")
 	}
 
 	Jim.Configure(func(message string, args ...interface{}) {

@@ -58,7 +58,7 @@ Check out how to [configure MailHog](/docs/CONFIG.md), or use the default settin
   * maildir message storage in ./mailhog-data
 
 Jim (the chaos monkey) state is also persisted. When you enable Jim via the API,
-the state is saved to ./mailhog-data/jim.json and restored on restart. You can
+the state is saved to ./mailhog-state/jim.json and restored on restart. You can
 override the file path with -jim-state-file or MH_JIM_STATE_FILE.
 
 ### Features
