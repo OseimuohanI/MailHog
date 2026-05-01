@@ -1,4 +1,4 @@
-MailHog [ ![Download](https://img.shields.io/github/release/mailhog/MailHog.svg) ](https://github.com/mailhog/MailHog/releases/tag/v1.0.0) [![GoDoc](https://godoc.org/github.com/mailhog/MailHog?status.svg)](https://godoc.org/github.com/mailhog/MailHog) [![Build Status](https://travis-ci.org/mailhog/MailHog.svg?branch=master)](https://travis-ci.org/mailhog/MailHog)
+MailHog [ ![Download](https://img.shields.io/github/release/OseimuohanI/MailHog.svg) ](https://github.com/OseimuohanI/MailHog/releases) [![GoDoc](https://godoc.org/github.com/OseimuohanI/MailHog?status.svg)](https://godoc.org/github.com/OseimuohanI/MailHog)
 =========
 
 Inspired by [MailCatcher](http://mailcatcher.me/), easier to install.
@@ -36,7 +36,7 @@ Then, start MailHog by running `mailhog` in the command line.
 #### Debian / Ubuntu
 ```bash
 sudo apt-get -y install golang-go
-go get github.com/mailhog/MailHog
+go get github.com/OseimuohanI/MailHog
 ```
 
 Then, start MailHog by running `/path/to/MailHog` in the command line.
@@ -112,7 +112,7 @@ sendmail_path = /usr/sbin/sendmail -S mail:1025
 
 MailHog is a rewritten version of [MailHog](https://github.com/ian-kent/MailHog), which was born out of [M3MTA](https://github.com/ian-kent/M3MTA).
 
-Clone this repository to ```$GOPATH/src/github.com/mailhog/MailHog``` and type ```make deps```.
+Clone this repository to ```$GOPATH/src/github.com/OseimuohanI/MailHog``` and type ```make deps```.
 
 See the [Building MailHog](/docs/BUILD.md) guide.
 
@@ -124,6 +124,6 @@ If you make any changes, run ```go fmt ./...``` before submitting a pull request
 
 ### Licence
 
-Copyright ©‎ 2014 - 2017, Ian Kent (http://iankent.uk)
+Original work © 2014 - 2017, Ian Kent (http://iankent.uk)
 
 Released under MIT license, see [LICENSE](LICENSE.md) for details.

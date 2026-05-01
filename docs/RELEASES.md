@@ -1,6 +1,21 @@
 MailHog Releases
 ================
 
+### [v2.0.6](https://github.com/OseimuohanI/MailHog/releases/v2.0.6)
+
+Improvements
+- Improved dark mode support
+
+### [v2.0.5](https://github.com/OseimuohanI/MailHog/releases/v2.0.5)
+
+Improvements
+- Enhanced dark mode support
+
+### [v2.0.4](https://github.com/OseimuohanI/MailHog/releases/v2.0.4)
+
+Improvements
+- Sort maildir messages newest-first
+
 ### [v2.0.3](https://github.com/OseimuohanI/MailHog/releases/v2.0.3)
 
 Bug Fixes
