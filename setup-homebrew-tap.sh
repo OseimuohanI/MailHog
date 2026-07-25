@@ -70,7 +70,7 @@ class Mailhog < Formula
       MailHog has been installed with custom features:
       
       🌙 Dark Mode: Toggle in the web UI (top-right corner)
-      💾 Persistent Storage: Emails saved to ./mailhog-data directory
+      💾 Persistent Storage: Emails saved to ./MailHog/mailhog-data directory
       
       To start MailHog:
         mailhog
