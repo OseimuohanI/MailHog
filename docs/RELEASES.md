@@ -1,6 +1,11 @@
 MailHog Releases
 ================
 
+### [v2.0.8](https://github.com/OseimuohanI/MailHog/releases/v2.0.8)
+
+Improvements
+- Ship the MailHog-folder storage layout by default
+
 ### [v2.0.7](https://github.com/OseimuohanI/MailHog/releases/v2.0.7)
 
 ### [v2.0.6](https://github.com/OseimuohanI/MailHog/releases/v2.0.6)
