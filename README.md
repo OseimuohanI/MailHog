@@ -55,10 +55,10 @@ E.g. the path to Go's bin files on Ubuntu is `~/go/bin/`, so to start the MailHo
 Check out how to [configure MailHog](/docs/CONFIG.md), or use the default settings:
   * the SMTP server starts on port 1025
   * the HTTP server starts on port 8025
-  * maildir message storage in ./MailHog/mailhog-data
+  * maildir message storage in ~/MailHog/mailhog-data
 
 Jim (the chaos monkey) state is also persisted. When you enable Jim via the API,
-the state is saved to ./MailHog/mailhog-state/jim.json and restored on restart. You can
+the state is saved to ~/MailHog/mailhog-state/jim.json and restored on restart. You can
 override the file path with -jim-state-file or MH_JIM_STATE_FILE.
 
 ### Features

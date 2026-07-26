@@ -23,8 +23,8 @@ func DefaultConfig() *Config {
 		MongoURI:     "127.0.0.1:27017",
 		MongoDb:      "mailhog",
 		MongoColl:    "messages",
-		MaildirPath:  "./MailHog/mailhog-data",
-		JimStateFile: defaultJimStateFile,
+		MaildirPath:  defaultMaildirPath(),
+		JimStateFile: defaultJimStateFile(),
 		StorageType:  "maildir",
 		CORSOrigin:   "",
 		WebPath:      "",
@@ -69,7 +69,22 @@ type OutgoingSMTP struct {
 
 var cfg = DefaultConfig()
 
-const defaultJimStateFile = "./MailHog/mailhog-state/jim.json"
+func defaultMailhogBaseDir() string {
+	homeDir, err := os.UserHomeDir()
+	if err != nil || homeDir == "" {
+		return filepath.Join(".", "MailHog")
+	}
+
+	return filepath.Join(homeDir, "MailHog")
+}
+
+func defaultMaildirPath() string {
+	return filepath.Join(defaultMailhogBaseDir(), "mailhog-data")
+}
+
+func defaultJimStateFile() string {
+	return filepath.Join(defaultMailhogBaseDir(), "mailhog-state", "jim.json")
+}
 
 // Jim is a monkey
 var Jim = &monkey.Jim{}
@@ -98,7 +113,7 @@ func Configure() *Config {
 		log.Fatalf("Invalid storage type %s", cfg.StorageType)
 	}
 
-	if cfg.JimStateFile == defaultJimStateFile && cfg.MaildirPath != "./MailHog/mailhog-data" {
+	if cfg.JimStateFile == defaultJimStateFile() && cfg.MaildirPath != defaultMaildirPath() {
 		cfg.JimStateFile = filepath.Join(filepath.Dir(cfg.MaildirPath), "mailhog-state", "jim.json")
 	}
 

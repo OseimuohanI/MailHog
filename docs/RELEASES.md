@@ -1,6 +1,11 @@
 MailHog Releases
 ================
 
+### [v2.0.9](https://github.com/OseimuohanI/MailHog/releases/v2.0.9)
+
+Bug Fixes
+- Move persistent mail storage into a writable ~/MailHog folder for Homebrew services
+
 ### [v2.0.8](https://github.com/OseimuohanI/MailHog/releases/v2.0.8)
 
 Improvements
