@@ -4,7 +4,7 @@ set -e
 # Script to set up Homebrew tap repository with proper checksums
 # Usage: ./setup-homebrew-tap.sh <version> <checksums-file>
 
-VERSION=${1:-"2.0.3"}
+VERSION=${1:-"2.0.10"}
 CHECKSUMS_FILE=${2:-"./release/checksums.txt"}
 
 if [ ! -f "$CHECKSUMS_FILE" ]; then

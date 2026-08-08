@@ -1,25 +1,25 @@
 class Mailhog < Formula
   desc "Web and API based SMTP testing tool with dark mode and persistent storage"
   homepage "https://github.com/OseimuohanI/MailHog"
-  version "2.0.9"
+  version "2.0.10"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.9/MailHog-darwin-arm64"
+      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.10/MailHog-darwin-arm64"
       sha256 "819aaa7f1f359dbd509a0fbe072be5cc1e97624a7b9ac7d4b39a26b7fd1c5cbf"
     else
-      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.9/MailHog-darwin-amd64"
+      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.10/MailHog-darwin-amd64"
       sha256 "b53476a3d37f144e5cb383ad65a45d83fa5dc8fd1138895560daec6db87b3488"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.9/MailHog-linux-arm64"
+      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.10/MailHog-linux-arm64"
       sha256 "a682b4ef7f1ff02a763879f3662f5abc71d8d8c45277ea1b8afd6efc2e8fb1f4"
     else
-      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.9/MailHog-linux-amd64"
+      url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.10/MailHog-linux-amd64"
       sha256 "9d21220ae8afda6c9e500a4e7983318fb9aa232e3a4f4781bdd1dd286f90c04f"
     end
   end
