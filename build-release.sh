@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=${1:-"2.0.10"}
+VERSION=${1:-"2.0.11"}
 OUTPUT_DIR="./release"
 
 echo "Building MailHog v${VERSION} for multiple platforms..."
