@@ -7,20 +7,20 @@ class Mailhog < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.11/MailHog-darwin-arm64"
-      sha256 "42404dc57658367e9371f94037079dab4787096e5b262ca11ed06135146768f8"
+      sha256 "73083f994aafa7e125171ed28e69752337d3d9e02263d71afd5f0ab51a27fb89"
     else
       url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.11/MailHog-darwin-amd64"
-      sha256 "d2680c99cee07313e8ee620206a9909bf7166f39c8a3ae146177859823514520"
+      sha256 "a62de24c37505cc8f754075ba95ff06ea35aacd73737ac9f4daa72c6d77ba7ec"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.11/MailHog-linux-arm64"
-      sha256 "9523b14f93639e4fbf548be8c42846f227295d8e419a3498d4b06da8683259c2"
+      sha256 "0e8f0913d5da491182709bab4536d3d8aa26c655a52745006cee41729e72f2b4"
     else
       url "https://github.com/OseimuohanI/MailHog/releases/download/v2.0.11/MailHog-linux-amd64"
-      sha256 "5c566b95ea5f87fe53af0bfd3cea6fbd7ea5967221cff9a35196627112d1d01f"
+      sha256 "952b00c91d060ce181ec50a35d0bfa552a2f68b8ba603ac2cb507941e5d3faef"
     end
   end
 
